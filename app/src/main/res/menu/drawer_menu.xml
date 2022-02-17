@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/nav_List">
+
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_Home"
+                    android:title="@string/nav_Home"/>
+
+                <item
+                    android:id="@+id/nav_Template"
+                    android:title="@string/nav_Template"
+                    android:enabled="false"/>
+
+            </group>
+
+        </menu>
+
+    </item>
+
+    <item android:title="@string/nav_Themes">
+
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_Themes"
+                    android:title="@string/nav_Themes"
+                    android:enabled="false"/>
+            </group>
+
+        </menu>
+
+    </item>
+
+    <item android:title="@string/nav_About">
+
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_About_App"
+                    android:title="@string/nav_About_App" />
+
+                <item
+                    android:id="@+id/nav_About_Us"
+                    android:title="@string/nav_About_Us" />
+            </group>
+
+        </menu>
+
+    </item>
+
+</menu>

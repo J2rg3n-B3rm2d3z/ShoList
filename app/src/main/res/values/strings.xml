@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ShoList</string>
+
+
+    <!--Strings to Navigation menu items-->
+
+    <string name="nav_List">Lists</string>
+    <string name="nav_Template">Template</string>
+    <string name="nav_Home">Home</string>
+
+    <string name="nav_Themes">Themes</string>
+
+    <string name="nav_About">About</string>
+    <string name="nav_About_App">About this app</string>
+    <string name="nav_About_Us">About us</string>
+
+    <string name="image_Description">Image</string>
+    <string name="version">Version: 1.0</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
+</resources>
