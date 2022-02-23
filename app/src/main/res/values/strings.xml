@@ -19,4 +19,9 @@
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
 
+    <!--Strings to default list item table-->
+
+    <string name="default_list_name">List Name</string>
+    <string name="default_total_value">0</string>
+
 </resources>

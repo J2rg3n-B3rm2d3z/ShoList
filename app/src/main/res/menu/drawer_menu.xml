@@ -7,12 +7,13 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_Home"
-                    android:title="@string/nav_Home"/>
+                    android:title="@string/nav_Home"
+                    android:enabled="true"/>
 
                 <item
                     android:id="@+id/nav_Template"
                     android:title="@string/nav_Template"
-                    android:enabled="false"/>
+                    android:enabled="true"/>
 
             </group>
 
@@ -27,7 +28,7 @@
                 <item
                     android:id="@+id/nav_Themes"
                     android:title="@string/nav_Themes"
-                    android:enabled="false"/>
+                    android:enabled="true"/>
             </group>
 
         </menu>
@@ -40,11 +41,13 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_About_App"
-                    android:title="@string/nav_About_App" />
+                    android:title="@string/nav_About_App"
+                    android:enabled="true"/>
 
                 <item
                     android:id="@+id/nav_About_Us"
-                    android:title="@string/nav_About_Us" />
+                    android:title="@string/nav_About_Us"
+                    android:enabled="true"/>
             </group>
 
         </menu>
