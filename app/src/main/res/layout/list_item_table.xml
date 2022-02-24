@@ -33,7 +33,7 @@
                 android:layout_gravity="center"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
-                app:srcCompat="@drawable/ic_baseline_list_24"
+                app:srcCompat="@drawable/ic_baseline_checklist_rtl_24"
                 android:contentDescription="@string/image_Description"/>
 
 
@@ -43,10 +43,51 @@
                 android:layout_height="wrap_content"
                 android:text="@string/default_list_name"
                 android:layout_marginStart="4dp"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentTop="true"
                 android:layout_toEndOf="@id/iconImageView"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 />
+
+            <TextView
+                android:id="@+id/List_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_list_date"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/iconImageView"
+                android:layout_alignBottom="@id/iconImageView"
+                android:textSize="15sp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="10dp"
+                tools:ignore="RelativeOverlap">
+
+                <Button
+                    android:id="@+id/btn_Edit"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_edit"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btn_Delete"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_delete"
+                    android:textSize="12sp"
+                    style="?android:attr/buttonBarButtonStyle" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/Total_Value_List"
@@ -57,7 +98,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignBottom="@id/iconImageView"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 tools:ignore="RelativeOverlap"/>
 
 

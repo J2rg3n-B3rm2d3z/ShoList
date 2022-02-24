@@ -12,12 +12,29 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
-            android:layout_width="387dp"
-            android:layout_height="585dp"
+            android:layout_width="375dp"
+            android:layout_height="546dp"
+            android:layout_marginTop="36dp"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_add"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="367dp"
+            android:layout_height="62dp"
+            android:text="@string/btn_add"
+            android:textSize="15sp"
+            app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.436" />
+            app:layout_constraintTop_toBottomOf="@+id/recycle_view"
+            app:layout_constraintVertical_bias="0.439"
+            app:strokeColor="@color/Green_1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
