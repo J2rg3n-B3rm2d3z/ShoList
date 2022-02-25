@@ -11,6 +11,7 @@ public class Table {
     private double Total;
     private String Date_List;
 
+    //Constructor
 
     public Table(){
 
@@ -27,6 +28,8 @@ public class Table {
 
         Date_List = date_list;
     }
+
+    //Getter n Setter
 
     public int getId() {
         return Id;

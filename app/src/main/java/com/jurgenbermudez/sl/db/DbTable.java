@@ -12,15 +12,21 @@ import com.jurgenbermudez.sl.objectstouse.Table;
 
 import java.util.ArrayList;
 
+//Class to adapt Table t_chart
+
 public class DbTable extends DbHelper {
 
     Context context;
+
+    //Constructor
 
     public DbTable(@Nullable Context context) {
         super(context);
         this.context = context;
 
     }
+
+    //Add in the table
 
     public long InsertList(String name, double total, String date_list){
 
@@ -47,6 +53,8 @@ public class DbTable extends DbHelper {
 
         return id;
     }
+
+    //Insert ShowTable in List
 
     @SuppressLint("Recycle")
     public ArrayList<Table> ShowList(){
@@ -79,6 +87,7 @@ public class DbTable extends DbHelper {
         return listTable;
     }
 
+    //Select a List in the table
 
     public Table SelectList(int id){
         DbHelper dbHelper = new DbHelper(context);
@@ -103,16 +112,31 @@ public class DbTable extends DbHelper {
         return table;
     }
 
+    //Edit a List in the table
+
     public boolean EditList(int id,String name, double total, String date_list){
 
         boolean Correct = false;
 
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         try {
+
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+
+            values.put("Name", name);
+            values.put("Total", total);
+            values.put("DateList", date_list);
+
+            db.update(TABLE_CHART,values," Id = ? ",new String[] {String.valueOf(id)});
+
+            /*
             db.execSQL("UPDATE " + TABLE_CHART + " SET Name = '" + name + "', Total = '" + total
                     + "', DateList = '" + date_list + "' WHERE id = " + id + " ");
+                    */
+
+            db.close();
 
             Correct = true;
 
@@ -120,12 +144,11 @@ public class DbTable extends DbHelper {
 
         }
 
-        db.close();
-
         return Correct;
 
     }
 
+    //Delete a list in the table
 
     public boolean DeleteList(int id){
 

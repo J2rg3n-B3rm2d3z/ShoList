@@ -51,7 +51,7 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
     @Override
     public ListAdapterTable.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         @SuppressLint("InflateParams") View view = Inflater.inflate(R.layout.list_item_table,null);
-        return new ViewHolder(view);
+        return new ViewHolder(view).LinkAdapter(this);
     }
 
     //Select a item in the list
@@ -68,16 +68,20 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
     }
 
 
+    //Class to use all function under one specific item on the list
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
         TextView name,total_value,date_list;
         Button btnEdit,btnDelete;
+        ListAdapterTable listAdapterTable;
 
 
         //Constructor
 
-        ViewHolder(@NonNull View item_view){
+        public ViewHolder(@NonNull View item_view){
+
             super(item_view);
             imageView = item_view.findViewById(R.id.iconImageView);
             name = item_view.findViewById(R.id.List_Name);
@@ -86,54 +90,83 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
             btnEdit = item_view.findViewById(R.id.btn_Edit);
             btnDelete = item_view.findViewById(R.id.btn_Delete);
 
-
+            //Events under item that was selected
 
             btnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    //Edit a item
+
                     Intent ToTableActivity = new Intent(item_view.getContext(), TableActivity.class);
                     ToTableActivity.putExtra("title","Edit List");
-                    ToTableActivity.putExtra("id",TableList.get(getAdapterPosition()).getId());
+                    ToTableActivity.putExtra("id",listAdapterTable.TableList.get(getAdapterPosition()).getId());
                     Context.startActivity(ToTableActivity);
+
                 }
             });
 
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    //Emergent windows
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(Context);
                     builder.setMessage("Delete this List?")
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
+                                    //Delete a item
+
                                     DbTable dbTable = new DbTable(Context);
-                                    if(dbTable.DeleteList(TableList.get(getAdapterPosition()).getId()))
+                                    if(dbTable.DeleteList(TableList.get(getAdapterPosition()).getId())) {
+
+                                        listAdapterTable.TableList.remove(getAdapterPosition());
+                                        listAdapterTable.notifyItemRemoved(getAdapterPosition());
                                         Toast.makeText(Context, "List was delete.", Toast.LENGTH_SHORT).show();
+
+
+                                    }
                                     else
                                         Toast.makeText(Context, "Error to delete.", Toast.LENGTH_SHORT).show();
-
-                                    
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    //Should not do nothing
 
                                 }
                             }).show();
+
                 }
             });
+
 
             item_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    //Make a new Activity where do the list
+
                     Toast.makeText(item_view.getContext(),
                             "This is an action to get the list with id: " + TableList.get(getAdapterPosition()).getId(),
                             Toast.LENGTH_SHORT).show();
+
+
                 }
             });
+        }
+
+        //Method to link the the Adapter with this class
+
+        public ViewHolder LinkAdapter (ListAdapterTable lstAdapterTable){
+
+            this.listAdapterTable = lstAdapterTable;
+            return this;
+
         }
 
         //Set data

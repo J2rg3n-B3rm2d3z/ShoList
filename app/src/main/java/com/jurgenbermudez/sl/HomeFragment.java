@@ -19,9 +19,7 @@ import com.jurgenbermudez.sl.db.DbTable;
 import com.jurgenbermudez.sl.objectstouse.ListAdapterTable;
 import com.jurgenbermudez.sl.objectstouse.Table;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class HomeFragment extends Fragment {
 
@@ -41,26 +39,6 @@ public class HomeFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //Initialization RecyclerView
-
-        //Play with the format of the date
-        /* Date date = new Date();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
-        String str_date = simpleDateFormat.format(date);
-
-        tableList = new ArrayList<>();
-
-        tableList.add(new Table(1,"Restaurant",1300,str_date));
-        tableList.add(new Table(2,"Shopping",1100,str_date));
-        tableList.add(new Table(3,"Disc Shop",1800,str_date));
-        tableList.add(new Table(4,"Pet Shop",9000,str_date));
-        tableList.add(new Table(5,"House Shop",3500,str_date));
-        tableList.add(new Table(6,"Flower Shop",2500,str_date));
-        tableList.add(new Table(7,"Doris Shop",4100,str_date));
-        tableList.add(new Table(8,"Jurgen Shop",2500,str_date)); */
-
-        //InitRecyclerView(view);
-
         //Button action
 
         Button btn_add = view.findViewById(R.id.btn_add);
@@ -78,6 +56,9 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
+
+    //Initialization RecyclerView
 
     @Override
     public void onResume() {

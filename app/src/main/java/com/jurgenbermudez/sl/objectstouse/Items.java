@@ -11,15 +11,17 @@ public class Items {
     private double Price;
     private int Quantity_Item;
 
+    //Constructors
+
     public Items(){
 
     }
 
     public Items(int id, int table_Id, String name, double price, int quantity_Item) {
-        if(Id>0)
+        if(id>0)
             Id = id;
 
-        if(Id>0)
+        if(table_Id>0)
             Table_Id = table_Id;
 
         Name = name;
@@ -31,8 +33,10 @@ public class Items {
             Quantity_Item = quantity_Item;
     }
 
+    //Getter n setter
+
     public void setId(int id) {
-        if(Id>0)
+        if(id>0)
             Id = id;
     }
 
@@ -41,7 +45,7 @@ public class Items {
     }
 
     public void setTable_Id(int table_Id) {
-        if(Id>0)
+        if(table_Id>0)
             Table_Id = table_Id;
     }
 

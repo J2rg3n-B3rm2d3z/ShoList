@@ -8,18 +8,21 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
+    //Constant to use in Database
+
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "shopping.db";
     public static final String TABLE_CHART = "t_chart";
     public static final String TABLE_LIST = "t_item";
 
-
-
+    //Constructor
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
+
+    //Create Tables
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -49,4 +52,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " + TABLE_LIST);
         onCreate(db);
     }
+
+
 }

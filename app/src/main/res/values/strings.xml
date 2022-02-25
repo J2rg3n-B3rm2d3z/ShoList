@@ -24,9 +24,15 @@
     <string name="default_list_name">List Name</string>
     <string name="default_list_date">Mon 00/00/0000</string>
     <string name="default_total_value">0</string>
+
+    <!--Strings to button-->
+
     <string name="btn_edit">Edit</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_add">Add</string>
+
+    <!--Strings to Activity Table-->
+
     <string name="list_name">List\'s Name</string>
     <string name="list_name_hint">Write the List\'s Name</string>
 

@@ -1,6 +1,7 @@
 package com.jurgenbermudez.sl;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,6 +31,8 @@ public class TableActivity extends AppCompatActivity {
     EditText txtListName;
     Button btnAction;
 
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ public class TableActivity extends AppCompatActivity {
         setSupportActionBar(ToolbarMain);
 
         //Add information
+
         if(getIntent().getStringExtra("title").equals("Add List")) {
 
             btnAction.setText("Add");
@@ -60,8 +64,12 @@ public class TableActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    //Add data
+
                     if (txtListName.getText().toString().isEmpty())
                         Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
+                    else if(txtListName.getText().toString().length()>13)
+                        Toast.makeText(TableActivity.this, "Name must be less than 13 characters.", Toast.LENGTH_LONG).show();
                     else {
 
                         Date date = new Date();
@@ -73,13 +81,16 @@ public class TableActivity extends AppCompatActivity {
                         if (id > 0)
                             Toast.makeText(TableActivity.this, "The new list id is: " + id, Toast.LENGTH_SHORT).show();
                         else
-                            Toast.makeText(TableActivity.this, "Failed to save data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TableActivity.this, "Failed to save data, Please contact with developer", Toast.LENGTH_SHORT).show();
 
                         finish();
                     }
                 }
             });
         }
+
+        //Edit information
+
         else if (getIntent().getStringExtra("title").equals("Edit List")){
 
             DbTable dbTable = new DbTable(this);
@@ -91,10 +102,10 @@ public class TableActivity extends AppCompatActivity {
             }
             else {
 
+                //Edit data
+
                 Table table = dbTable.SelectList(getIntent().getIntExtra("id", -1));
-
                 txtListName.setText(table.getName());
-
                 btnAction.setText("Edit");
 
                 btnAction.setOnClickListener(new View.OnClickListener() {
@@ -103,17 +114,24 @@ public class TableActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Date date = new Date();
-                        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
+                        if (txtListName.getText().toString().isEmpty())
+                            Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
+                        else if(txtListName.getText().toString().length()>13)
+                            Toast.makeText(TableActivity.this, "Name must be less than 13 characters.", Toast.LENGTH_LONG).show();
+                        else {
 
-                        DbTable dbTable = new DbTable(TableActivity.this);
+                            Date date = new Date();
+                            @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
 
-                        if (dbTable.EditList(table.getId(),txtListName.getText().toString(),0,simpleDateFormat.format(date)))
-                            Toast.makeText(TableActivity.this, "Data was updated", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(TableActivity.this, "Failed to update data", Toast.LENGTH_SHORT).show();
+                            DbTable dbTable = new DbTable(TableActivity.this);
 
-                        finish();
+                            if (dbTable.EditList(table.getId(), txtListName.getText().toString(), 0, simpleDateFormat.format(date)))
+                                Toast.makeText(TableActivity.this, "Data was updated", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(TableActivity.this, "Failed to update data", Toast.LENGTH_SHORT).show();
+
+                            finish();
+                        }
                     }
                 });
             }
@@ -121,5 +139,10 @@ public class TableActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "Fatal error no edit action no add action, Please contact with developer", Toast.LENGTH_SHORT).show();
         }
+
+
+
+
+
     }
 }

@@ -21,30 +21,28 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-22dp">
 
-
-                <EditText
+            <EditText
                 android:id="@+id/txtNameList"
-                android:layout_width="378dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="40dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/list_name_hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.515"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:layout_width="698dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="36dp"
                 android:autofillHints="name"
-                app:helperText = "a"
-                />
-
+                android:ems="10"
+                android:hint="@string/list_name_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.524"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <Button
                 android:id="@+id/btn_Action_list"
                 style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="367dp"
+                android:layout_width="698dp"
                 android:layout_height="62dp"
                 android:layout_marginBottom="64dp"
                 android:text="@string/btn_add"
@@ -52,18 +50,19 @@
                 app:cornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.519"
                 app:layout_constraintStart_toStartOf="parent"
                 app:strokeColor="@color/Green_1" />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="373dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="68dp"
+                android:layout_width="689dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="40dp"
                 android:text="@string/list_name"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.578"
+                app:layout_constraintHorizontal_bias="0.477"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
