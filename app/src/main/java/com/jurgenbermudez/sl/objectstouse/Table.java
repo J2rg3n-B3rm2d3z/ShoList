@@ -1,4 +1,4 @@
-package com.jurgenbermudez.sl;
+package com.jurgenbermudez.sl.objectstouse;
 
 //Class to use to save table data in a Database
 

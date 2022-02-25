@@ -14,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -142,6 +143,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_About_Us:
                 fragment = new AboutUsFragment();
+                break;
+
+            default:
+                Toast.makeText(this, "Fatal error fragment no exist, Please contact with developer", Toast.LENGTH_SHORT).show();
                 break;
         }
 

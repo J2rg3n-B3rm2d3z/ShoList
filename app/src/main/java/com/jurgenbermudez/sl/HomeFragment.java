@@ -1,6 +1,7 @@
 package com.jurgenbermudez.sl;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,13 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.jurgenbermudez.sl.db.DbTable;
+import com.jurgenbermudez.sl.objectstouse.ListAdapterTable;
+import com.jurgenbermudez.sl.objectstouse.Table;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -28,7 +30,8 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    ArrayList<Table> tableList;
+    View view;
+    ArrayList<Table> tableList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -36,12 +39,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //Initialization RecyclerView
 
         //Play with the format of the date
-        Date date = new Date();
+        /* Date date = new Date();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
         String str_date = simpleDateFormat.format(date);
 
@@ -54,15 +57,44 @@ public class HomeFragment extends Fragment {
         tableList.add(new Table(5,"House Shop",3500,str_date));
         tableList.add(new Table(6,"Flower Shop",2500,str_date));
         tableList.add(new Table(7,"Doris Shop",4100,str_date));
-        tableList.add(new Table(8,"Jurgen Shop",2500,str_date));
+        tableList.add(new Table(8,"Jurgen Shop",2500,str_date)); */
 
-        ListAdapterTable listAdapterTable = new ListAdapterTable(tableList,getContext());
+        //InitRecyclerView(view);
+
+        //Button action
+
+        Button btn_add = view.findViewById(R.id.btn_add);
+
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent ToTableActivity = new Intent(getContext(),TableActivity.class);
+                ToTableActivity.putExtra("title","Add List");
+                ToTableActivity.putExtra("id",-1);
+                startActivity(ToTableActivity);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        InitRecyclerView(view);
+    }
+
+    public void InitRecyclerView(View view){
+
+        DbTable dbTable = new DbTable(getContext());
+
+        ListAdapterTable listAdapterTable = new ListAdapterTable(dbTable.ShowList(),getContext());
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(listAdapterTable);
 
-        return view;
     }
 
 

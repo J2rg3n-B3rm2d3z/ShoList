@@ -1,7 +1,10 @@
-package com.jurgenbermudez.sl;
+package com.jurgenbermudez.sl.objectstouse;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +16,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jurgenbermudez.sl.R;
+import com.jurgenbermudez.sl.TableActivity;
+import com.jurgenbermudez.sl.db.DbTable;
+
 import java.util.ArrayList;
-import java.util.List;
 
 //Class to use to adapt the listview to a recyclerview
 
@@ -22,7 +28,7 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
 
     private ArrayList<Table> TableList;
     private final LayoutInflater Inflater;
-    private Context Context;
+    private final Context Context;
 
     //Constructor
 
@@ -68,6 +74,7 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
         TextView name,total_value,date_list;
         Button btnEdit,btnDelete;
 
+
         //Constructor
 
         ViewHolder(@NonNull View item_view){
@@ -79,24 +86,54 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
             btnEdit = item_view.findViewById(R.id.btn_Edit);
             btnDelete = item_view.findViewById(R.id.btn_Delete);
 
+
+
             btnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(item_view.getContext(),
-                            "This is a edit button to list with id: " + TableList.get(getAdapterPosition()).getId(),
-                            Toast.LENGTH_SHORT).show();
+                    Intent ToTableActivity = new Intent(item_view.getContext(), TableActivity.class);
+                    ToTableActivity.putExtra("title","Edit List");
+                    ToTableActivity.putExtra("id",TableList.get(getAdapterPosition()).getId());
+                    Context.startActivity(ToTableActivity);
                 }
             });
 
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(item_view.getContext(),
-                            "This is a delete button to list with id: " + TableList.get(getAdapterPosition()).getId(),
-                            Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Context);
+                    builder.setMessage("Delete this List?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    DbTable dbTable = new DbTable(Context);
+                                    if(dbTable.DeleteList(TableList.get(getAdapterPosition()).getId()))
+                                        Toast.makeText(Context, "List was delete.", Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(Context, "Error to delete.", Toast.LENGTH_SHORT).show();
+
+                                    
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            }).show();
                 }
             });
 
+            item_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(item_view.getContext(),
+                            "This is an action to get the list with id: " + TableList.get(getAdapterPosition()).getId(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         //Set data

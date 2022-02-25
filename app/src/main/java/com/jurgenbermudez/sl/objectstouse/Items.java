@@ -1,4 +1,4 @@
-package com.jurgenbermudez.sl;
+package com.jurgenbermudez.sl.objectstouse;
 
 
 //Class to use to save to items data in a DataBase
