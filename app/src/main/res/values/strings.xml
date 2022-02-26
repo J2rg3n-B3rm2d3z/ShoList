@@ -23,7 +23,7 @@
 
     <string name="default_list_name">List Name</string>
     <string name="default_list_date">Mon 00/00/0000</string>
-    <string name="default_total_value">0</string>
+    <string name="default_total_value">Total: 0</string>
 
     <!--Strings to button-->
 

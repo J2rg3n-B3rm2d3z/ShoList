@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -173,6 +175,8 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
 
         @SuppressLint("SetTextI18n")
         void binData(final Table item){
+
+            imageView.setColorFilter(Color.parseColor("#55AD37"),PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
             total_value.setText("Total: " + item.getTotal());
             date_list.setText(item.getDate_List());

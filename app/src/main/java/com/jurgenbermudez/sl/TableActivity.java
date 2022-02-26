@@ -68,8 +68,8 @@ public class TableActivity extends AppCompatActivity {
 
                     if (txtListName.getText().toString().isEmpty())
                         Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
-                    else if(txtListName.getText().toString().length()>13)
-                        Toast.makeText(TableActivity.this, "Name must be less than 13 characters.", Toast.LENGTH_LONG).show();
+                    else if(txtListName.getText().toString().length()>15)
+                        Toast.makeText(TableActivity.this, "Name must be less than 15 characters.", Toast.LENGTH_LONG).show();
                     else {
 
                         Date date = new Date();
@@ -116,8 +116,8 @@ public class TableActivity extends AppCompatActivity {
 
                         if (txtListName.getText().toString().isEmpty())
                             Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
-                        else if(txtListName.getText().toString().length()>13)
-                            Toast.makeText(TableActivity.this, "Name must be less than 13 characters.", Toast.LENGTH_LONG).show();
+                        else if(txtListName.getText().toString().length()>15)
+                            Toast.makeText(TableActivity.this, "Name must be less than 15 characters.", Toast.LENGTH_LONG).show();
                         else {
 
                             Date date = new Date();
