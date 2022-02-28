@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Card_View"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="20sp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            android:src="@drawable/ic_baseline_playlist_add_check_24"
+            android:contentDescription="@string/image_Description"
+            tools:ignore="RtlSymmetry"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="15dp"
+                android:layout_weight="1" />
+
+            <TextView
+
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:text="@string/Item_default_text"
+                android:textSize="21sp"
+                android:paddingStart="5dp"
+                android:textColor="@color/Green_5"
+                tools:ignore="RtlSymmetry" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="RelativeOverlap"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price"
+                    android:textSize="15sp"
+                    android:paddingStart="5dp"
+                    android:layout_weight="1"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/count"
+                    android:textSize="15sp"
+                    android:paddingStart="5dp"
+                    android:layout_weight="1"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total"
+                    android:textSize="15sp"
+                    android:paddingStart="5dp"
+                    android:layout_weight="1"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="RelativeOverlap"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_values"
+                    android:textSize="15sp"
+                    android:paddingStart="5dp"
+                    android:layout_weight="1"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_values"
+                    android:textSize="15sp"
+                    android:paddingStart="5dp"
+                    android:layout_weight="1"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_values"
+                    android:textSize="15sp"
+                    android:paddingStart="5dp"
+                    android:layout_weight="1"
+                    tools:ignore="RtlSymmetry" />
+
+
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="15dp"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

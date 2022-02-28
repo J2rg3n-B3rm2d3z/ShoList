@@ -47,7 +47,7 @@
                 android:layout_toEndOf="@id/iconImageView"
                 android:text="@string/default_list_name"
                 android:textSize="20sp"
-                tools:ignore="RelativeOverlap" />
+                tools:ignore="RelativeOverlap"/>
 
             <TextView
                 android:id="@+id/List_Date"
@@ -59,8 +59,6 @@
                 android:text="@string/default_list_date"
                 android:textSize="15sp"
                 tools:ignore="RelativeOverlap" />
-
-
 
 
             <TextView

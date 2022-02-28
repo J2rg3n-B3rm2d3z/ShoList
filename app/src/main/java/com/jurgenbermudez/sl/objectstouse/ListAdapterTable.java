@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jurgenbermudez.sl.ItemsViewActivity;
 import com.jurgenbermudez.sl.R;
 import com.jurgenbermudez.sl.TableActivity;
 import com.jurgenbermudez.sl.db.DbTable;
@@ -152,11 +153,10 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
                 public void onClick(View v) {
 
                     //Make a new Activity where do the list
-
-                    Toast.makeText(item_view.getContext(),
-                            "This is an action to get the list with id: " + TableList.get(getAdapterPosition()).getId(),
-                            Toast.LENGTH_SHORT).show();
-
+                    Intent ToItemViewActivity = new Intent(item_view.getContext(), ItemsViewActivity.class);
+                    ToItemViewActivity.putExtra("id_table",listAdapterTable.TableList.get(getAdapterPosition()).getId());
+                    ToItemViewActivity.putExtra("title",listAdapterTable.TableList.get(getAdapterPosition()).getName());
+                    Context.startActivity(ToItemViewActivity);
 
                 }
             });

@@ -24,28 +24,23 @@
             android:layout_height="match_parent">
 
 
-                <EditText
-                android:id="@+id/txtNameList"
-                android:layout_width="378dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="40dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/list_name_hint"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="365dp"
+                android:layout_height="573dp"
+                android:layout_marginTop="32dp"
+                android:background="#2E2D2D"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.515"
+                app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
-                android:autofillHints="name"
-                />
-
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_Action_list"
+                android:id="@+id/button"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="367dp"
                 android:layout_height="62dp"
-                android:layout_marginBottom="64dp"
+                android:layout_marginBottom="44dp"
                 android:text="@string/btn_add"
                 android:textSize="15sp"
                 app:cornerRadius="20dp"
@@ -54,17 +49,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:strokeColor="@color/Green_1" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="373dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="68dp"
-                android:text="@string/list_name"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.578"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
