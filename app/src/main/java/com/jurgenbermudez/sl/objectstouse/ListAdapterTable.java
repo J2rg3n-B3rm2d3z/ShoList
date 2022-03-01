@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.icu.text.DecimalFormat;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jurgenbermudez.sl.ItemsViewActivity;
@@ -60,6 +63,7 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
 
     //Select a item in the list
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull ListAdapterTable.ViewHolder holder, final int position) {
         holder.binData(TableList.get(position));
@@ -104,7 +108,8 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
 
                     Intent ToTableActivity = new Intent(item_view.getContext(), TableActivity.class);
                     ToTableActivity.putExtra("title","Edit List");
-                    ToTableActivity.putExtra("id",listAdapterTable.TableList.get(getAdapterPosition()).getId());
+                    ToTableActivity.putExtra("id",listAdapterTable.TableList.get(
+                            getAdapterPosition()).getId());
                     Context.startActivity(ToTableActivity);
 
                 }
@@ -126,14 +131,17 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
 
                                     DbTable dbTable = new DbTable(Context);
                                     DbItems dbItems = new DbItems(Context);
-                                    if(dbItems.DeleteItems(TableList.get(getAdapterPosition()).getId()) && dbTable.DeleteList(TableList.get(getAdapterPosition()).getId())) {
+                                    if(dbItems.DeleteItems(TableList.get(getAdapterPosition()).getId())
+                                            && dbTable.DeleteList(TableList.get(getAdapterPosition()).getId())) {
 
                                         listAdapterTable.TableList.remove(getAdapterPosition());
                                         listAdapterTable.notifyItemRemoved(getAdapterPosition());
-                                        Toast.makeText(Context, "List was delete.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Context, "List was delete.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                     else
-                                        Toast.makeText(Context, "Error to delete.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Context, "Error to delete.",
+                                                Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -147,15 +155,19 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
                 }
             });
 
+            //Select the items
 
             item_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     //Make a new Activity where do the list
-                    Intent ToItemViewActivity = new Intent(item_view.getContext(), ItemsViewActivity.class);
-                    ToItemViewActivity.putExtra("id_table",listAdapterTable.TableList.get(getAdapterPosition()).getId());
-                    ToItemViewActivity.putExtra("title",listAdapterTable.TableList.get(getAdapterPosition()).getName());
+                    Intent ToItemViewActivity = new Intent(item_view.getContext(),
+                            ItemsViewActivity.class);
+                    ToItemViewActivity.putExtra("id_table",
+                            listAdapterTable.TableList.get(getAdapterPosition()).getId());
+                    ToItemViewActivity.putExtra("title",
+                            listAdapterTable.TableList.get(getAdapterPosition()).getName());
                     Context.startActivity(ToItemViewActivity);
 
                 }
@@ -173,12 +185,15 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
 
         //Set data
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @SuppressLint("SetTextI18n")
         void binData(final Table item){
 
+            DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
             imageView.setColorFilter(Color.parseColor("#55AD37"),PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
-            total_value.setText("Total: " + item.getTotal());
+            total_value.setText("Total: " + decimalFormat.format(item.getTotal()));
             date_list.setText(item.getDate_List());
         }
 

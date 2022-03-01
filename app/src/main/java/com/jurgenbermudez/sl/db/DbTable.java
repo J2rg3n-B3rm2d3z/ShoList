@@ -62,8 +62,8 @@ public class DbTable extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ArrayList<Table> listTable = new ArrayList<>();
-        Table table = null;
-        Cursor cursorTable = null;
+        Table table;
+        Cursor cursorTable;
 
         cursorTable = db.rawQuery("SELECT * FROM " + TABLE_CHART, null);
 
@@ -94,9 +94,10 @@ public class DbTable extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         Table table = null;
-        Cursor cursorTable = null;
+        Cursor cursorTable;
 
-        cursorTable = db.rawQuery("SELECT * FROM " + TABLE_CHART + " WHERE id = " + id + " LIMIT 1", null);
+        cursorTable = db.rawQuery("SELECT * FROM " + TABLE_CHART + " WHERE id = " + id + " LIMIT 1",
+                null);
 
         if(cursorTable.moveToFirst()){
             table = new Table();
@@ -131,11 +132,6 @@ public class DbTable extends DbHelper {
 
             db.update(TABLE_CHART,values," Id = ? ",new String[] {String.valueOf(id)});
 
-            /*
-            db.execSQL("UPDATE " + TABLE_CHART + " SET Name = '" + name + "', Total = '" + total
-                    + "', DateList = '" + date_list + "' WHERE id = " + id + " ");
-                    */
-
             db.close();
 
             Correct = true;
@@ -169,9 +165,5 @@ public class DbTable extends DbHelper {
         db.close();
 
         return Correct;
-
     }
-
-
-
 }

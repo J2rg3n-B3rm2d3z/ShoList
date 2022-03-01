@@ -26,6 +26,8 @@ public class ItemsActivity extends AppCompatActivity {
     Button btnAction;
     EditText txtName,txtPrice,txtCount;
 
+    //onCreate code
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +36,19 @@ public class ItemsActivity extends AppCompatActivity {
 
         ToolbarMain = findViewById(R.id.toolbar);
         btnAction = findViewById(R.id.btn_Action_item);
+
         txtName = findViewById(R.id.txt_Name_Item);
-
         txtCount = findViewById(R.id.txt_Count_Item);
-
         txtPrice = findViewById(R.id.txt_Price_Item);
+
 
         int TableId= getIntent().getIntExtra("id_table",-1);
         int Id = getIntent().getIntExtra("id",-1);
 
         setTitle(getIntent().getStringExtra("title"));
         setSupportActionBar(ToolbarMain);
+
+        //Add Item
 
         if(getIntent().getStringExtra("title").equals("Add Item")) {
 
@@ -54,76 +58,118 @@ public class ItemsActivity extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View v) {
-                    
-                    if(txtName.getText().toString().isEmpty() || txtCount.getText().toString().isEmpty() || txtPrice.getText().toString().isEmpty()){
 
-                        Toast.makeText(ItemsActivity.this,"A field is empty.", Toast.LENGTH_LONG).show();
+                    //Validation
+
+                    if(txtName.getText().toString().isEmpty() ||
+                            txtCount.getText().toString().isEmpty() ||
+                            txtPrice.getText().toString().isEmpty()){
+
+                        Toast.makeText(ItemsActivity.this,"A field is empty.",
+                                Toast.LENGTH_LONG).show();
 
                     }
                     else if(TableId == -1){
-                        Toast.makeText(ItemsActivity.this, "Fatal error IdTable = -1, Please contact with developer", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(ItemsActivity.this,
+                                "Fatal error IdTable = -1, Please contact with developer",
+                                Toast.LENGTH_SHORT).show();
                         finish();
                     }
                     else{
-                        Items items = new Items(-1,TableId,txtName.getText().toString(),Double.parseDouble(txtPrice.getText().toString())
-                                ,Integer.parseInt(txtCount.getText().toString()));
+
+                        boolean doubleValid = false;
+
+                        try {
+
+                            Double.parseDouble(txtPrice.getText().toString());
+                            doubleValid = true;
+                        }
+                        catch (Exception ignored){
+
+                        }
+
+                        //if everything is okay
+
+                        if(doubleValid) {
+
+                            Items items = new Items(-1, TableId, txtName.getText().toString(),
+                                    Double.parseDouble(txtPrice.getText().toString())
+                                    , Integer.parseInt(txtCount.getText().toString()));
 
 
-                        DbItems dbItems = new DbItems(ItemsActivity.this);
+                            DbItems dbItems = new DbItems(ItemsActivity.this);
 
-                        long id = dbItems.InsertList(TableId,
-                                items.getName(),items.getPrice(),items.getQuantity_Item(),items.Total_Value());
+                            long id = dbItems.InsertList(TableId,
+                                    items.getName(), items.getPrice(),
+                                    items.getQuantity_Item(),
+                                    items.Total_Value());
 
-                        if(id!=-1) {
-                            Date date = new Date();
-                            @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
+                            if (id != -1) {
+                                Date date = new Date();
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat =
+                                        new SimpleDateFormat("E dd/MM/yyyy");
 
-                            DbTable dbTable = new DbTable(ItemsActivity.this);
+                                DbTable dbTable = new DbTable(ItemsActivity.this);
 
-                            Table table;
+                                Table table = dbTable.SelectList(TableId);
 
-                            table = dbTable.SelectList(TableId);
+                                if (dbTable.EditList(table.getId(), table.getName(),
+                                        table.getTotal(), simpleDateFormat.format(date))) {
 
-                            if(dbTable.EditList(table.getId(),table.getName(),table.getTotal(),simpleDateFormat.format(date))){
+                                    Toast.makeText(ItemsActivity.this,
+                                            "Item was added", Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(ItemsActivity.this, "Item was added Id = " + id, Toast.LENGTH_SHORT).show();
+                                } else {
 
+                                    Toast.makeText(ItemsActivity.this,
+                                            "Fatal Error Table Doesn't update, Please contact with developer",
+                                            Toast.LENGTH_SHORT).show();
 
+                                }
+                            } else {
+
+                                Toast.makeText(ItemsActivity.this,
+                                        "Fatal Error id = -1, Please contact with developer",
+                                        Toast.LENGTH_SHORT).show();
                             }
-                            else{
-
-                                Toast.makeText(ItemsActivity.this, "Fatal Error Table Doesn't update, Please contact with developer", Toast.LENGTH_SHORT).show();
-
-                            }
+                            finish();
                         }
                         else{
 
-                            Toast.makeText(ItemsActivity.this, "Fatal Error id = -1, Please contact with developer", Toast.LENGTH_SHORT).show();
-                        }
-                        finish();
+                            Toast.makeText(ItemsActivity.this,"Invalid price.",
+                                    Toast.LENGTH_LONG).show();
 
+                        }
                     }
                 }
             });
-
         }
 
         //Edit item
 
         else if(getIntent().getStringExtra("title").equals("Edit Item")){
 
+            //Validation
+
             if(Id == -1) {
 
-                Toast.makeText(ItemsActivity.this, "Fatal error Id = -1, Please contact with developer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ItemsActivity.this,
+                        "Fatal error Id = -1, Please contact with developer",
+                        Toast.LENGTH_SHORT).show();
                 finish();
             }
             else if(TableId == -1)
             {
-                Toast.makeText(ItemsActivity.this, "Fatal error Id = -1, Please contact with developer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ItemsActivity.this,
+                        "Fatal error Id = -1, Please contact with developer",
+                        Toast.LENGTH_SHORT).show();
                 finish();
 
             }
             else{
+
+                //If everything is okay
 
                 DbItems dbItems = new DbItems(ItemsActivity.this);
                 Items items = dbItems.SelectItem(Id);
@@ -139,54 +185,78 @@ public class ItemsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        if(txtName.getText().toString().isEmpty() || txtCount.getText().toString().isEmpty() || txtPrice.getText().toString().isEmpty()){
+                        //Validation field text
 
-                            Toast.makeText(ItemsActivity.this,"A field is empty.", Toast.LENGTH_LONG).show();
+                        if(txtName.getText().toString().isEmpty() ||
+                                txtCount.getText().toString().isEmpty() ||
+                                txtPrice.getText().toString().isEmpty()){
+
+                            Toast.makeText(ItemsActivity.this,"A field is empty.",
+                                    Toast.LENGTH_LONG).show();
                         }
                         else{
+                            boolean doubleValid = false;
 
-                            items.setQuantity_Item(Integer.parseInt(txtCount.getText().toString()));
-                            items.setPrice(Double.parseDouble(txtPrice.getText().toString()));
-                            items.setName(txtName.getText().toString());
+                            try {
 
-                            if(dbItems.EditItem(Id,TableId,items.getName(),items.getPrice(),items.getQuantity_Item(),items.Total_Value())){
+                                Double.parseDouble(txtPrice.getText().toString());
+                                doubleValid = true;
+                            }
+                            catch (Exception ignored){
 
-                                Date date = new Date();
-                                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
+                            }
 
-                                DbTable dbTable = new DbTable(ItemsActivity.this);
+                            //if everything is okay
 
-                                Table table;
+                            if(doubleValid) {
 
-                                table = dbTable.SelectList(TableId);
+                                items.setQuantity_Item(Integer.parseInt(txtCount.getText().toString()));
+                                items.setPrice(Double.parseDouble(txtPrice.getText().toString()));
+                                items.setName(txtName.getText().toString());
 
-                                if(dbTable.EditList(table.getId(),table.getName(),table.getTotal(),simpleDateFormat.format(date))){
+                                if (dbItems.EditItem(Id, TableId, items.getName(),
+                                        items.getPrice(), items.getQuantity_Item(),
+                                        items.Total_Value())) {
 
-                                    Toast.makeText(ItemsActivity.this, "Item was updated", Toast.LENGTH_SHORT).show();
+                                    Date date = new Date();
+                                    @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat =
+                                            new SimpleDateFormat("E dd/MM/yyyy");
 
-                                }
-                                else{
+                                    DbTable dbTable = new DbTable(ItemsActivity.this);
 
-                                    Toast.makeText(ItemsActivity.this, "Fatal Error Table Doesn't update, Please contact with developer", Toast.LENGTH_SHORT).show();
+                                    Table table = dbTable.SelectList(TableId);
+
+                                    if (dbTable.EditList(table.getId(), table.getName(),
+                                            table.getTotal(), simpleDateFormat.format(date))) {
+
+                                        Toast.makeText(ItemsActivity.this,
+                                                "Item was updated", Toast.LENGTH_SHORT).show();
+
+                                    } else {
+
+                                        Toast.makeText(ItemsActivity.this,
+                                                "Fatal Error Table Doesn't update, Please contact with developer",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } else {
+
+                                    Toast.makeText(ItemsActivity.this,
+                                            "Error update data, Please contact with developer",
+                                            Toast.LENGTH_SHORT).show();
+
                                 }
                                 finish();
-
                             }
                             else{
 
-                                Toast.makeText(ItemsActivity.this, "Error update data, Please contact with developer", Toast.LENGTH_SHORT).show();
-                                finish();
-
+                                Toast.makeText(ItemsActivity.this,"Invalid price.",
+                                        Toast.LENGTH_LONG).show();
                             }
                         }
-
                     }
                 });
-
             }
-
         }
-
-
     }
 }

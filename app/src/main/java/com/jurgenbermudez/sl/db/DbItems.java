@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
 
 import com.jurgenbermudez.sl.objectstouse.Items;
-import com.jurgenbermudez.sl.objectstouse.Table;
 
 import java.util.ArrayList;
 
@@ -56,7 +55,7 @@ public class DbItems extends DbHelper {
         return id;
     }
 
-    //Insert ShowTable in List
+    //Insert ShowItem in List
 
     @SuppressLint("Recycle")
     public ArrayList<Items> ShowList(int tableId){
@@ -64,11 +63,12 @@ public class DbItems extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ArrayList<Items>listItems = new ArrayList<>();
-        Items items = null;
-        Cursor cursorTable = null;
+        Items items;
+        Cursor cursorTable;
 
 
-        cursorTable = db.rawQuery("SELECT * FROM " + TABLE_LIST + " WHERE TableId = " + tableId, null);
+        cursorTable = db.rawQuery("SELECT * FROM " + TABLE_LIST + " WHERE TableId = " + tableId,
+                null);
 
         if(cursorTable.moveToFirst()){
             do{
@@ -98,9 +98,10 @@ public class DbItems extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         Items items = null;
-        Cursor cursorTable = null;
+        Cursor cursorTable;
 
-        cursorTable = db.rawQuery("SELECT * FROM " + TABLE_LIST + " WHERE id = " + id + " LIMIT 1", null);
+        cursorTable = db.rawQuery("SELECT * FROM " + TABLE_LIST + " WHERE id = " + id + " LIMIT 1",
+                null);
 
         if(cursorTable.moveToFirst()){
             items = new Items();
@@ -119,7 +120,8 @@ public class DbItems extends DbHelper {
 
     //Edit a Item in the List
 
-    public boolean EditItem(int id, int tableId, String name, double price,int quantityItem,  double total){
+    public boolean EditItem(int id, int tableId, String name, double price,int quantityItem,
+                            double total){
 
         boolean Correct = false;
 
@@ -138,11 +140,6 @@ public class DbItems extends DbHelper {
 
             db.update(TABLE_LIST,values," Id = ? ",new String[] {String.valueOf(id)});
 
-            /*
-            db.execSQL("UPDATE " + TABLE_CHART + " SET Name = '" + name + "', Total = '" + total
-                    + "', DateList = '" + date_list + "' WHERE id = " + id + " ");
-                    */
-
             db.close();
 
             Correct = true;
@@ -155,7 +152,7 @@ public class DbItems extends DbHelper {
 
     }
 
-    //Delete a list in the table
+    //Delete a item in the table
 
     public boolean DeleteItem(int id){
 
@@ -179,6 +176,8 @@ public class DbItems extends DbHelper {
 
     }
 
+    //Delete all item in the list
+
     public boolean DeleteItems(int idTable){
 
         boolean Correct = false;
@@ -200,5 +199,4 @@ public class DbItems extends DbHelper {
         return Correct;
 
     }
-
 }

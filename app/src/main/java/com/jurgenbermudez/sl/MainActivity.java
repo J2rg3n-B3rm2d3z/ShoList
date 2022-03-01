@@ -18,7 +18,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     //Interface variables
 
@@ -146,7 +147,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             default:
-                Toast.makeText(this, "Fatal error fragment no exist, Please contact with developer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,
+                        "Fatal error fragment no exist, Please contact with developer",
+                        Toast.LENGTH_SHORT).show();
                 break;
         }
 

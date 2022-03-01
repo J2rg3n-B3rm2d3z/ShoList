@@ -16,9 +16,6 @@ import android.widget.Button;
 
 import com.jurgenbermudez.sl.db.DbTable;
 import com.jurgenbermudez.sl.objectstouse.ListAdapterTable;
-import com.jurgenbermudez.sl.objectstouse.Table;
-
-import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -28,7 +25,6 @@ public class HomeFragment extends Fragment {
     }
 
     View view;
-    ArrayList<Table> tableList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -46,6 +42,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                //Go to the Activity Action
+
                 Intent ToTableActivity = new Intent(getContext(),TableActivity.class);
                 ToTableActivity.putExtra("title","Add List");
                 ToTableActivity.putExtra("id",-1);
@@ -56,7 +54,6 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-
     //Initialization RecyclerView
 
     @Override
@@ -66,6 +63,8 @@ public class HomeFragment extends Fragment {
     }
 
     public void InitRecyclerView(View view){
+
+        //Create the recycler view
 
         DbTable dbTable = new DbTable(getContext());
 

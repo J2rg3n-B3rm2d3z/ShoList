@@ -1,6 +1,5 @@
 package com.jurgenbermudez.sl.objectstouse;
 
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.icu.text.DecimalFormat;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -23,7 +23,6 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jurgenbermudez.sl.ItemsActivity;
-import com.jurgenbermudez.sl.ItemsViewActivity;
 import com.jurgenbermudez.sl.R;
 import com.jurgenbermudez.sl.db.DbItems;
 import com.jurgenbermudez.sl.db.DbTable;
@@ -66,9 +65,11 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
 
     //Select a item in the list
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull ListAdapterItems.ViewHolder holder, final int position) {
         holder.binData(ItemsList.get(position));
+
     }
 
     //Set List
@@ -112,36 +113,68 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
                     Intent ToItemActivity = new Intent(v.getContext(), ItemsActivity.class);
                     ToItemActivity.putExtra("title","Edit Item");
                     ToItemActivity.putExtra("id_table",IdTable);
-                    ToItemActivity.putExtra("id",listAdapterItems.ItemsList.get(getAdapterPosition()).getId());
+                    ToItemActivity.putExtra("id",listAdapterItems.ItemsList.get(
+                            getAdapterPosition()).getId());
                     v.getContext().startActivity(ToItemActivity);
 
                 }
             });
+
+            //Delete a item that was selected
 
             btnDeleteItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     //Emergent windows
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(Context);
                     builder.setMessage("Delete this Item?")
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @SuppressLint("SetTextI18n")
                                 @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
-                                    //Delete a item
+                                    //Update de Date in the table
+
+                                    DbTable dbTableSelect = new DbTable(Context);
+                                    Table table = dbTableSelect.SelectList(ItemsList.get(
+                                            getAdapterPosition()).getTable_Id());
+
+                                    DbTable dbTableEdit = new DbTable(Context);
+
+                                    Date date = new Date();
+                                    @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat =
+                                            new SimpleDateFormat("E dd/MM/yyyy");
+
+                                    if(!dbTableEdit.EditList(table.getId(),
+                                            table.getName(),
+                                            table.getTotal(),
+                                            simpleDateFormat.format(date))){
+
+                                        Toast.makeText(Context,
+                                                "Error to update, Please contact with developer",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    //Delete the item selected
 
                                     DbItems dbItems = new DbItems(Context);
                                     if(dbItems.DeleteItem(ItemsList.get(getAdapterPosition()).getId())) {
 
                                         listAdapterItems.ItemsList.remove(getAdapterPosition());
                                         listAdapterItems.notifyItemRemoved(getAdapterPosition());
-                                        Toast.makeText(Context, "Item was delete.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Context,
+                                                "Item was delete.", Toast.LENGTH_SHORT).show();
 
                                     }
-                                    else
-                                        Toast.makeText(Context, "Error to delete, Please contact with developer", Toast.LENGTH_SHORT).show();
+                                    else {
+                                        Toast.makeText(Context,
+                                                "Error to delete, Please contact with developer",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -151,10 +184,8 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
 
                                 }
                             }).show();
-
                 }
             });
-
         }
 
         //Method to link the the Adapter with this class
@@ -168,17 +199,17 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
 
         //Set data
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @SuppressLint("SetTextI18n")
         void binData(final Items item){
 
+            DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
             imageView.setColorFilter(Color.parseColor("#55AD37"), PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
-            price_value.setText(String.valueOf(item.getPrice()));
+            price_value.setText(String.valueOf(decimalFormat.format(item.getPrice())));
             count_value.setText(String.valueOf(item.getQuantity_Item()));
-            total_value.setText(String.valueOf(item.Total_Value()));
-
+            total_value.setText(String.valueOf(decimalFormat.format(item.Total_Value())));
         }
-
-
     }
 }

@@ -1,7 +1,6 @@
 package com.jurgenbermudez.sl;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -31,6 +30,7 @@ public class TableActivity extends AppCompatActivity {
     EditText txtListName;
     Button btnAction;
 
+    //onCreated Method
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -67,19 +67,26 @@ public class TableActivity extends AppCompatActivity {
                     //Add data
 
                     if (txtListName.getText().toString().isEmpty())
-                        Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(TableActivity.this,
+                                "The field is empty.",
+                                Toast.LENGTH_LONG).show();
                     else {
 
                         Date date = new Date();
-                        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat =
+                                new SimpleDateFormat("E dd/MM/yyyy");
 
                         DbTable dbTable = new DbTable(TableActivity.this);
-                        long id = dbTable.InsertList(txtListName.getText().toString(), 0, simpleDateFormat.format(date));
+                        long id = dbTable.InsertList(txtListName.getText().toString(),
+                                0, simpleDateFormat.format(date));
 
                         if (id > 0)
-                            Toast.makeText(TableActivity.this, "The new list id is: " + id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TableActivity.this, "The list was added",
+                                    Toast.LENGTH_SHORT).show();
                         else
-                            Toast.makeText(TableActivity.this, "Failed to save data, Please contact with developer", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TableActivity.this,
+                                    "Failed to save data, Please contact with developer",
+                                    Toast.LENGTH_SHORT).show();
 
                         finish();
                     }
@@ -93,7 +100,9 @@ public class TableActivity extends AppCompatActivity {
 
             if(getIntent().getIntExtra("id",-1) == -1) {
 
-                Toast.makeText(this, "Fatal error Id = -1, Please contact with developer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,
+                        "Fatal error Id = -1, Please contact with developer",
+                        Toast.LENGTH_SHORT).show();
                 finish();
             }
             else {
@@ -112,18 +121,19 @@ public class TableActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         if (txtListName.getText().toString().isEmpty())
-                            Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TableActivity.this, "The field is empty.",
+                                    Toast.LENGTH_LONG).show();
                         else {
-
-                            Date date = new Date();
-                            @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E dd/MM/yyyy");
 
                             DbTable dbTable = new DbTable(TableActivity.this);
 
-                            if (dbTable.EditList(table.getId(), txtListName.getText().toString(), table.getTotal(), simpleDateFormat.format(date)))
-                                Toast.makeText(TableActivity.this, "Data was updated", Toast.LENGTH_SHORT).show();
+                            if (dbTable.EditList(table.getId(), txtListName.getText().toString(),
+                                    table.getTotal(), table.getDate_List()))
+                                Toast.makeText(TableActivity.this,
+                                        "Data was updated", Toast.LENGTH_SHORT).show();
                             else
-                                Toast.makeText(TableActivity.this, "Failed to update data", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TableActivity.this,
+                                        "Failed to update data", Toast.LENGTH_SHORT).show();
 
                             finish();
                         }
@@ -132,12 +142,9 @@ public class TableActivity extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(this, "Fatal error no edit action no add action, Please contact with developer", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Fatal error no edit action no add action, Please contact with developer",
+                    Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-
     }
 }

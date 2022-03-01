@@ -2,8 +2,6 @@ package com.jurgenbermudez.sl.objectstouse;
 
 //Class to use to save table data in a Database
 
-import java.util.Date;
-
 public class Table {
 
     private int Id;
