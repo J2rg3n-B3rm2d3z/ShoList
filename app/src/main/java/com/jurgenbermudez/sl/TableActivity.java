@@ -68,8 +68,6 @@ public class TableActivity extends AppCompatActivity {
 
                     if (txtListName.getText().toString().isEmpty())
                         Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
-                    else if(txtListName.getText().toString().length()>15)
-                        Toast.makeText(TableActivity.this, "Name must be less than 15 characters.", Toast.LENGTH_LONG).show();
                     else {
 
                         Date date = new Date();
@@ -93,8 +91,6 @@ public class TableActivity extends AppCompatActivity {
 
         else if (getIntent().getStringExtra("title").equals("Edit List")){
 
-            DbTable dbTable = new DbTable(this);
-
             if(getIntent().getIntExtra("id",-1) == -1) {
 
                 Toast.makeText(this, "Fatal error Id = -1, Please contact with developer", Toast.LENGTH_SHORT).show();
@@ -104,6 +100,7 @@ public class TableActivity extends AppCompatActivity {
 
                 //Edit data
 
+                DbTable dbTable = new DbTable(this);
                 Table table = dbTable.SelectList(getIntent().getIntExtra("id", -1));
                 txtListName.setText(table.getName());
                 btnAction.setText("Edit");
@@ -116,8 +113,6 @@ public class TableActivity extends AppCompatActivity {
 
                         if (txtListName.getText().toString().isEmpty())
                             Toast.makeText(TableActivity.this, "The field is empty.", Toast.LENGTH_LONG).show();
-                        else if(txtListName.getText().toString().length()>15)
-                            Toast.makeText(TableActivity.this, "Name must be less than 15 characters.", Toast.LENGTH_LONG).show();
                         else {
 
                             Date date = new Date();
@@ -125,7 +120,7 @@ public class TableActivity extends AppCompatActivity {
 
                             DbTable dbTable = new DbTable(TableActivity.this);
 
-                            if (dbTable.EditList(table.getId(), txtListName.getText().toString(), 0, simpleDateFormat.format(date)))
+                            if (dbTable.EditList(table.getId(), txtListName.getText().toString(), table.getTotal(), simpleDateFormat.format(date)))
                                 Toast.makeText(TableActivity.this, "Data was updated", Toast.LENGTH_SHORT).show();
                             else
                                 Toast.makeText(TableActivity.this, "Failed to update data", Toast.LENGTH_SHORT).show();

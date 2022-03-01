@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jurgenbermudez.sl.ItemsViewActivity;
 import com.jurgenbermudez.sl.R;
 import com.jurgenbermudez.sl.TableActivity;
+import com.jurgenbermudez.sl.db.DbItems;
 import com.jurgenbermudez.sl.db.DbTable;
 
 import java.util.ArrayList;
@@ -124,13 +125,12 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
                                     //Delete a item
 
                                     DbTable dbTable = new DbTable(Context);
-                                    if(dbTable.DeleteList(TableList.get(getAdapterPosition()).getId())) {
+                                    DbItems dbItems = new DbItems(Context);
+                                    if(dbItems.DeleteItems(TableList.get(getAdapterPosition()).getId()) && dbTable.DeleteList(TableList.get(getAdapterPosition()).getId())) {
 
                                         listAdapterTable.TableList.remove(getAdapterPosition());
                                         listAdapterTable.notifyItemRemoved(getAdapterPosition());
                                         Toast.makeText(Context, "List was delete.", Toast.LENGTH_SHORT).show();
-
-
                                     }
                                     else
                                         Toast.makeText(Context, "Error to delete.", Toast.LENGTH_SHORT).show();

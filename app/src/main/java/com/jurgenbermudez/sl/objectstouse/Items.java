@@ -18,7 +18,7 @@ public class Items {
     }
 
     public Items(int id, int table_Id, String name, double price, int quantity_Item) {
-        if(id>0)
+
             Id = id;
 
         if(table_Id>0)

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SL">
         <activity
+            android:name=".ItemsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ItemsViewActivity"
             android:exported="false" />
         <activity

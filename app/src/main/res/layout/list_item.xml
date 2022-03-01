@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Card_View"
+    android:id="@+id/Card_view_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
@@ -17,121 +17,162 @@
         android:animateLayoutChanges="true"
         android:orientation="horizontal">
 
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:paddingStart="10dp"
-            android:src="@drawable/ic_baseline_playlist_add_check_24"
-            android:contentDescription="@string/image_Description"
-            tools:ignore="RtlSymmetry"
-
-            />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:padding="6dp"
+            tools:ignore="UselessParent">
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="15dp"
-                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/Image_Icon_view_Item"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/buttons"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/image_Description"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                app:srcCompat="@drawable/ic_baseline_playlist_add_check_24" />
 
             <TextView
 
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/Text_view_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/Image_Icon_view_Item"
                 android:ems="10"
                 android:gravity="start|top"
                 android:text="@string/Item_default_text"
-                android:textSize="21sp"
-                android:paddingStart="5dp"
                 android:textColor="@color/Green_5"
-                tools:ignore="RtlSymmetry" />
+                android:textSize="21sp" />
+
 
             <LinearLayout
+                android:id="@+id/label_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Text_view_item"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@id/Image_Icon_view_Item"
+                android:orientation="horizontal"
+                tools:ignore="RelativeOverlap">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:text="@string/price"
+                    android:textSize="15sp"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:text="@string/count"
+                    android:textSize="15sp"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:text="@string/total"
+                    android:textSize="15sp"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/values_of_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="RelativeOverlap"
                 android:orientation="horizontal"
+                android:layout_toEndOf="@id/Image_Icon_view_Item"
+                android:layout_below="@id/label_items"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
                 >
 
                 <TextView
+                    android:id="@+id/Price_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/price"
+                    android:text="@string/default_values"
                     android:textSize="15sp"
                     android:paddingStart="5dp"
                     android:layout_weight="1"
                     tools:ignore="RtlSymmetry" />
                 <TextView
+                    android:id="@+id/Count_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/count"
+                    android:text="@string/default_values"
                     android:textSize="15sp"
                     android:paddingStart="5dp"
                     android:layout_weight="1"
                     tools:ignore="RtlSymmetry" />
                 <TextView
+                    android:id="@+id/Total_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/total"
+                    android:text="@string/default_values"
                     android:textSize="15sp"
                     android:paddingStart="5dp"
                     android:layout_weight="1"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry"/>
 
             </LinearLayout>
+
 
             <LinearLayout
+                android:id="@+id/buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/Image_Icon_view_Item"
                 tools:ignore="RelativeOverlap"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_below="@id/values_of_items"
 
-                <TextView
+                android:layout_alignParentEnd="true"
+                >
+
+                <Button
+                    android:id="@+id/btn_Edit_Item"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/default_values"
-                    android:textSize="15sp"
-                    android:paddingStart="5dp"
+                    android:text="@string/btn_edit"
+                    android:textSize="12sp"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_weight="1"
-                    tools:ignore="RtlSymmetry" />
-                <TextView
+                    />
+
+                <Button
+                    android:id="@+id/btn_Delete_Item"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/default_values"
-                    android:textSize="15sp"
-                    android:paddingStart="5dp"
+                    android:text="@string/btn_delete"
+                    android:textSize="12sp"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_weight="1"
-                    tools:ignore="RtlSymmetry" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/default_values"
-                    android:textSize="15sp"
-                    android:paddingStart="5dp"
-                    android:layout_weight="1"
-                    tools:ignore="RtlSymmetry" />
-
-
+                    />
 
             </LinearLayout>
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="15dp"
-                android:layout_weight="1" />
 
-
-        </LinearLayout>
-
-
+        </RelativeLayout>
 
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>

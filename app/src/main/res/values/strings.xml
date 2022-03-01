@@ -44,5 +44,15 @@
     <string name="total">Total:</string>
     <string name="default_values">0</string>
 
+    <!-- Strings to Activity Item -->
+
+    <string name="label_item_name">Item\'s Name</string>
+    <string name="hint_item_name">Write the item\'s name</string>
+    <string name="label_item_price">Price</string>
+    <string name="hint_item_price">Write the item\'s price</string>
+    <string name="label_item_count">Count</string>
+    <string name="hint_item_count">Write the number of items</string>
+
+
 
 </resources>
