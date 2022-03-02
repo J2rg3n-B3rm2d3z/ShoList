@@ -15,7 +15,7 @@
     <string name="nav_About_Us">About us</string>
 
     <string name="image_Description">Image</string>
-    <string name="version">Version: 1.0</string>
+    <string name="version">Version: Beta</string>
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
 
@@ -55,6 +55,17 @@
     <string name="hint_item_count">Write the number of items</string>
     <string name="get_total">Get total</string>
 
+    <!-- Strings to Fragment About-->
+
+    <string name="About_us">I am a programming student at the National University of Engineering (UNI) of Nicaragua, in my third year of computer engineering, I have done several things throughout my life. This being one of the many things I have done.</string>
+
+    <string name="LinkToSite">
+
+        <a href="https://linktr.ee/j2rg3n">Develop by: Jurgen Bermudez</a>
+
+    </string>
+
+    <string name="About_app">This is a personal project in which it is intended to make an application where people make lists of the products they want to buy in different specific areas that one wants.</string>
 
 
 </resources>
