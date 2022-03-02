@@ -91,7 +91,7 @@ public class ItemsActivity extends AppCompatActivity {
 
                         //if everything is okay
 
-                        if(doubleValid) {
+                        if(doubleValid && Validation()) {
 
                             Items items = new Items(-1, TableId, txtName.getText().toString(),
                                     Double.parseDouble(txtPrice.getText().toString())
@@ -137,7 +137,7 @@ public class ItemsActivity extends AppCompatActivity {
                         }
                         else{
 
-                            Toast.makeText(ItemsActivity.this,"Invalid price.",
+                            Toast.makeText(ItemsActivity.this,"Invalid values.",
                                     Toast.LENGTH_LONG).show();
 
                         }
@@ -208,7 +208,7 @@ public class ItemsActivity extends AppCompatActivity {
 
                             //if everything is okay
 
-                            if(doubleValid) {
+                            if(doubleValid && Validation()) {
 
                                 items.setQuantity_Item(Integer.parseInt(txtCount.getText().toString()));
                                 items.setPrice(Double.parseDouble(txtPrice.getText().toString()));
@@ -250,7 +250,7 @@ public class ItemsActivity extends AppCompatActivity {
                             }
                             else{
 
-                                Toast.makeText(ItemsActivity.this,"Invalid price.",
+                                Toast.makeText(ItemsActivity.this,"Invalid values.",
                                         Toast.LENGTH_LONG).show();
                             }
                         }
@@ -258,5 +258,20 @@ public class ItemsActivity extends AppCompatActivity {
                 });
             }
         }
+    }
+
+    public boolean Validation(){
+
+        try {
+
+            Double.parseDouble(txtPrice.getText().toString());
+            Integer.parseInt(txtCount.getText().toString());
+
+        }catch (Exception exception){
+
+            return false;
+
+        }
+        return true;
     }
 }
