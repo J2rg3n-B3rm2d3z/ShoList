@@ -51,12 +51,18 @@ public class TableActivity extends AppCompatActivity {
 
         setTitle(getIntent().getStringExtra("title"));
         setSupportActionBar(ToolbarMain);
+        ToolbarMain.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //Add information
 
-        if(getIntent().getStringExtra("title").equals("Add List")) {
+        if(getIntent().getStringExtra("title").equals(getString(R.string.Add_list_tittle))) {
 
-            btnAction.setText("Add");
+            btnAction.setText(getString(R.string.btn_add));
 
             btnAction.setOnClickListener(new View.OnClickListener() {
 
@@ -68,7 +74,7 @@ public class TableActivity extends AppCompatActivity {
 
                     if (txtListName.getText().toString().isEmpty())
                         Toast.makeText(TableActivity.this,
-                                "The field is empty.",
+                                getString(R.string.UserMessage1),
                                 Toast.LENGTH_LONG).show();
                     else {
 
@@ -77,16 +83,16 @@ public class TableActivity extends AppCompatActivity {
                                 new SimpleDateFormat("E dd/MM/yyyy");
 
                         DbTable dbTable = new DbTable(TableActivity.this);
-                        long id = dbTable.InsertList(txtListName.getText().toString(),
-                                0, simpleDateFormat.format(date));
+                        long id = dbTable.InsertList(txtListName.getText().toString(), 0,
+                                simpleDateFormat.format(date));
 
                         if (id > 0)
-                            Toast.makeText(TableActivity.this, "The list was added",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TableActivity.this, getString(R.string.UserMessage2),
+                                    Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(TableActivity.this,
-                                    "Failed to save data, Please contact with developer",
-                                    Toast.LENGTH_SHORT).show();
+                                    getString(R.string.Message3),
+                                    Toast.LENGTH_LONG).show();
 
                         finish();
                     }
@@ -96,13 +102,13 @@ public class TableActivity extends AppCompatActivity {
 
         //Edit information
 
-        else if (getIntent().getStringExtra("title").equals("Edit List")){
+        else if (getIntent().getStringExtra("title").equals(getString(R.string.Edit_list_tittle))){
 
             if(getIntent().getIntExtra("id",-1) == -1) {
 
                 Toast.makeText(this,
-                        "Fatal error Id = -1, Please contact with developer",
-                        Toast.LENGTH_SHORT).show();
+                        getString(R.string.Message4),
+                        Toast.LENGTH_LONG).show();
                 finish();
             }
             else {
@@ -112,7 +118,7 @@ public class TableActivity extends AppCompatActivity {
                 DbTable dbTable = new DbTable(this);
                 Table table = dbTable.SelectList(getIntent().getIntExtra("id", -1));
                 txtListName.setText(table.getName());
-                btnAction.setText("Edit");
+                btnAction.setText(getString(R.string.btn_edit));
 
                 btnAction.setOnClickListener(new View.OnClickListener() {
 
@@ -121,7 +127,7 @@ public class TableActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         if (txtListName.getText().toString().isEmpty())
-                            Toast.makeText(TableActivity.this, "The field is empty.",
+                            Toast.makeText(TableActivity.this, getString(R.string.UserMessage1),
                                     Toast.LENGTH_LONG).show();
                         else {
 
@@ -130,10 +136,10 @@ public class TableActivity extends AppCompatActivity {
                             if (dbTable.EditList(table.getId(), txtListName.getText().toString(),
                                     table.getTotal(), table.getDate_List()))
                                 Toast.makeText(TableActivity.this,
-                                        "Data was updated", Toast.LENGTH_SHORT).show();
+                                        getString(R.string.UserMessage3), Toast.LENGTH_LONG).show();
                             else
                                 Toast.makeText(TableActivity.this,
-                                        "Failed to update data", Toast.LENGTH_SHORT).show();
+                                        getString(R.string.Message7), Toast.LENGTH_LONG).show();
 
                             finish();
                         }
@@ -142,9 +148,8 @@ public class TableActivity extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(this,
-                    "Fatal error no edit action no add action, Please contact with developer",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.Message5), Toast.LENGTH_LONG).show();
+            finish();
         }
     }
 

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShoList</string>
+
+
+    <!--Strings to Navigation menu items-->
+
+    <string name="nav_List">Listas</string>
+    <string name="nav_Template">Plantillas</string>
+    <string name="nav_Home">Home</string>
+
+    <string name="nav_Themes">Temas</string>
+
+    <string name="nav_About">Acerca de</string>
+    <string name="nav_About_App">Acerca de esta app</string>
+    <string name="nav_About_Us">Nosotros</string>
+
+    <string name="image_Description">Imagen</string>
+    <string name="version">Version: Beta</string>
+    <string name="drawer_open">Abrir Dibujado</string>
+    <string name="drawer_close">Cerrar Dibujado</string>
+
+    <!--Strings to default list item table-->
+
+    <string name="default_list_name">Nombre de la lista</string>
+    <string name="default_list_date">Lunes 00/00/0000</string>
+    <string name="default_total_value">Total: 0</string>
+
+    <!--Strings to button-->
+
+    <string name="btn_edit">Editar</string>
+    <string name="btn_delete">Eliminar</string>
+    <string name="btn_add">Agregar</string>
+
+    <!--Strings to Activity Table-->
+
+    <string name="list_name">Nombre de la lista</string>
+    <string name="list_name_hint">Escriba el nombre de la lista</string>
+
+    <!-- Strings to Activity Item List View -->
+
+    <string name="Item_default_text">Texto predefinido del articulo.</string>
+    <string name="price">Precio:</string>
+    <string name="count">Cantidad:</string>
+    <string name="total">Total:</string>
+    <string name="default_values">0</string>
+
+
+    <!-- Strings to Activity Item -->
+
+    <string name="label_item_name">Nombre del articulo</string>
+    <string name="hint_item_name">Escriba el nombre del articulo</string>
+    <string name="label_item_price">Precio</string>
+    <string name="hint_item_price">Escriba el precio del articulo</string>
+    <string name="label_item_count">Cantidad</string>
+    <string name="hint_item_count">Escriba la cantidad deseada</string>
+    <string name="get_total">Obtener total</string>
+
+    <!-- Strings to Fragment About-->
+
+    <string name="About_us">Soy estudiante de programación en la Universidad Nacional de Ingeniería (UNI) de Nicaragua, en mi tercer año de ingeniería en Computacion, he hecho varias cosas a lo largo de mi vida. Esta es una de las muchas cosas que he hecho.</string>
+
+    <string name="LinkToSite">
+
+        <a href="https://linktr.ee/j2rg3n">Desarrollado por: Jurgen Bermudez</a>
+
+    </string>
+
+    <string name="About_app">Este es un proyecto personal en el que se pretende hacer una aplicación donde las personas hagan listas de los productos que quieren comprar en diferentes áreas específicas que uno quiere.</string>
+
+    <!-- Strings to use in code -->
+
+    <string name="Add_list_tittle">Agregar Lista</string>
+    <string name="Add_item_tittle">Agregar Articulo</string>
+
+    <string name="Edit_list_tittle">Editar Lista</string>
+    <string name="Edit_item_tittle">Editar Articulo</string>
+
+    <string name="Message1">Error fatal para actualizar el total de la lista, póngase en contacto con el desarrollador</string>
+    <string name="Message2">Error fatal, fragmento no existe. Póngase en contacto con el desarrollador.</string>
+    <string name="Message3">No se pudieron guardar los datos. Póngase en contacto con el desarrollador.</string>
+    <string name="Message4">Error fatal, Id = -1, póngase en contacto con el desarrollador</string>
+    <string name="Message5">Error fatal, sin acción de edición, sin acción de adición, póngase en contacto con el desarrollador</string>
+    <string name="Message6">Error fatal, IdTable = -1, póngase en contacto con el desarrollador</string>
+    <string name="Message7">No se pudieron actualizar los datos. Póngase en contacto con el desarrollador.</string>
+    <string name="Message8">Error fatal, la tabla no se actualizo, comuníquese con el desarrollador</string>
+    <string name="Message9">Error al actualizar los datos, póngase en contacto con el desarrollador</string>
+    <string name="Message10">Error al eliminar. Póngase en contacto con el desarrolladorr</string>
+
+    <!-- Strings to message to User Errors-->
+
+    <string name="UserMessage1">Un campo está vacío.</string>
+    <string name="UserMessage2">La lista fue añadida.</string>
+    <string name="UserMessage3">Los datos fueron actualizados.</string>
+    <string name="UserMessage4">El articulo fue agregado.</string>
+    <string name="UserMessage5">El articulo fue actualizado.</string>
+    <string name="UserMessage6">Valores invalidos.</string>
+
+    <string name="UserMessage7">¿Eliminar esta lista?</string>
+    <string name="UserMessage8">La lista fue eliminada.</string>
+
+    <string name="UserMessage9">¿Eliminar este articulo?</string>
+    <string name="UserMessage10">El articulo fue eliminado</string>
+
+    <!-- Others Strings-->
+
+    <string name="Yes"> si </string>
+    <string name="default_value">1</string>
+
+
+</resources>

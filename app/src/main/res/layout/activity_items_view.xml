@@ -27,7 +27,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_View_Items"
                 android:layout_width="369dp"
-                android:layout_height="501dp"
+                android:layout_height="590dp"
                 android:layout_marginTop="32dp"
                 android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,15 +38,14 @@
             <Button
                 android:id="@+id/btn_Add_Item"
                 style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="370dp"
+                android:layout_width="170dp"
                 android:layout_height="60dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="32dp"
                 android:text="@string/btn_add"
                 android:textSize="15sp"
                 app:cornerRadius="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/btn_get_total"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.39"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:strokeColor="@color/Green_1" />
 
@@ -64,20 +63,6 @@
                 app:strokeColor="@color/Green_1"
                 />
 
-            <Button
-                android:id="@+id/btn_get_total"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="180dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="28dp"
-                android:text="@string/get_total"
-                android:textSize="15sp"
-                app:cornerRadius="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:strokeColor="@color/Green_1"
-                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

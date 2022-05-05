@@ -7,8 +7,10 @@
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/ic_ShoList_background.xml" value="0.2985" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/ic_baseline_checklist_rtl_24.xml" value="0.2985" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/ic_baseline_list_24.xml" value="0.2985" />
+        <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/ic_baseline_playlist_add_check_24.xml" value="0.2295" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/ic_sholist_background.xml" value="0.2985" />
+        <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/jurgen_image_background.xml" value="0.2295" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/drawable/scroll_bar_icon.xml" value="0.2985" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout-land/activity_items.xml" value="0.31040564373897706" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout-land/activity_items_view.xml" value="0.22" />
@@ -19,7 +21,7 @@
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout-land/fragment_themes.xml" value="0.25" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout-land/list_item_table.xml" value="0.25" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout/activity_items.xml" value="0.25" />
-        <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout/activity_items_view.xml" value="0.2" />
+        <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout/activity_items_view.xml" value="0.22" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout/activity_table.xml" value="0.25" />
         <entry key="..\:/Users/Jurgen/AndroidStudioProjects/SL/app/src/main/res/layout/fragment_about_app.xml" value="0.25" />

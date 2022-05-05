@@ -34,7 +34,7 @@
                 android:contentDescription="@string/image_Description"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
-                app:srcCompat="@drawable/ic_baseline_playlist_add_check_24" />
+                app:srcCompat="@drawable/ic_baseline_check_24" />
 
             <TextView
 

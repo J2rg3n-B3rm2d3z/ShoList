@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
                 //Go to the Activity Action
 
                 Intent ToTableActivity = new Intent(getContext(),TableActivity.class);
-                ToTableActivity.putExtra("title","Add List");
+                ToTableActivity.putExtra("title",getString(R.string.Add_list_tittle));
                 ToTableActivity.putExtra("id",-1);
                 startActivity(ToTableActivity);
             }

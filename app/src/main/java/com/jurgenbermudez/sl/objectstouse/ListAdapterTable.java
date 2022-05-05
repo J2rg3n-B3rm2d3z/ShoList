@@ -9,9 +9,12 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.icu.text.DecimalFormat;
 import android.os.Build;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -107,7 +110,7 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
                     //Edit a item
 
                     Intent ToTableActivity = new Intent(item_view.getContext(), TableActivity.class);
-                    ToTableActivity.putExtra("title","Edit List");
+                    ToTableActivity.putExtra("title",item_view.getContext().getString(R.string.Edit_list_tittle));
                     ToTableActivity.putExtra("id",listAdapterTable.TableList.get(
                             getAdapterPosition()).getId());
                     Context.startActivity(ToTableActivity);
@@ -122,8 +125,8 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
                     //Emergent windows
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(Context);
-                    builder.setMessage("Delete this List?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    builder.setMessage(v.getContext().getString(R.string.UserMessage7))
+                            .setPositiveButton(v.getContext().getString(R.string.Yes), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -136,11 +139,11 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
 
                                         listAdapterTable.TableList.remove(getAdapterPosition());
                                         listAdapterTable.notifyItemRemoved(getAdapterPosition());
-                                        Toast.makeText(Context, "List was delete.",
+                                        Toast.makeText(Context, v.getContext().getString(R.string.UserMessage8),
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                     else
-                                        Toast.makeText(Context, "Error to delete.",
+                                        Toast.makeText(Context, v.getContext().getString(R.string.Message10),
                                                 Toast.LENGTH_SHORT).show();
                                 }
                             })
@@ -162,14 +165,32 @@ public class ListAdapterTable extends RecyclerView.Adapter<ListAdapterTable.View
                 public void onClick(View v) {
 
                     //Make a new Activity where do the list
-                    Intent ToItemViewActivity = new Intent(item_view.getContext(),
-                            ItemsViewActivity.class);
-                    ToItemViewActivity.putExtra("id_table",
-                            listAdapterTable.TableList.get(getAdapterPosition()).getId());
-                    ToItemViewActivity.putExtra("title",
-                            listAdapterTable.TableList.get(getAdapterPosition()).getName());
-                    Context.startActivity(ToItemViewActivity);
+                    Animation animItems = AnimationUtils.loadAnimation(v.getContext(),R.anim.item_animation);
+                    v.startAnimation(animItems);
 
+                    animItems.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+
+                            Intent ToItemViewActivity = new Intent(item_view.getContext(),
+                                    ItemsViewActivity.class);
+                            ToItemViewActivity.putExtra("id_table",
+                                    listAdapterTable.TableList.get(getAdapterPosition()).getId());
+                            ToItemViewActivity.putExtra("title",
+                                    listAdapterTable.TableList.get(getAdapterPosition()).getName());
+                            Context.startActivity(ToItemViewActivity);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
                 }
             });
         }

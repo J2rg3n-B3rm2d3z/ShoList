@@ -37,14 +37,16 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
     private final LayoutInflater Inflater;
     private final Context Context;
     private final int IdTable;
+    private final DeleteListener DelListener;
 
     //Constructor
 
-    public ListAdapterItems(ArrayList<Items> itemsList, Context context, int idTable) {
+    public ListAdapterItems(ArrayList<Items> itemsList, Context context, int idTable, DeleteListener deleteListener) {
         Inflater = LayoutInflater.from(context) ;
         ItemsList = itemsList;
         Context = context;
         IdTable = idTable;
+        DelListener = deleteListener;
     }
 
     //Get total item in the list
@@ -111,7 +113,7 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
                     //Edit a item
 
                     Intent ToItemActivity = new Intent(v.getContext(), ItemsActivity.class);
-                    ToItemActivity.putExtra("title","Edit Item");
+                    ToItemActivity.putExtra("title",v.getContext().getString(R.string.Edit_item_tittle));
                     ToItemActivity.putExtra("id_table",IdTable);
                     ToItemActivity.putExtra("id",listAdapterItems.ItemsList.get(
                             getAdapterPosition()).getId());
@@ -129,8 +131,8 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
                     //Emergent windows
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(Context);
-                    builder.setMessage("Delete this Item?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    builder.setMessage(R.string.UserMessage9)
+                            .setPositiveButton(v.getContext().getString(R.string.Yes), new DialogInterface.OnClickListener() {
                                 @SuppressLint("SetTextI18n")
                                 @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
@@ -154,7 +156,7 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
                                             simpleDateFormat.format(date))){
 
                                         Toast.makeText(Context,
-                                                "Error to update, Please contact with developer",
+                                                v.getContext().getString(R.string.Message7),
                                                 Toast.LENGTH_SHORT).show();
                                     }
 
@@ -166,15 +168,17 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.View
                                         listAdapterItems.ItemsList.remove(getAdapterPosition());
                                         listAdapterItems.notifyItemRemoved(getAdapterPosition());
                                         Toast.makeText(Context,
-                                                "Item was delete.", Toast.LENGTH_SHORT).show();
+                                                R.string.UserMessage10, Toast.LENGTH_SHORT).show();
+
 
                                     }
                                     else {
                                         Toast.makeText(Context,
-                                                "Error to delete, Please contact with developer",
+                                                v.getContext().getString(R.string.Message10),
                                                 Toast.LENGTH_SHORT).show();
                                     }
 
+                                    DelListener.onClickDelete();
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {

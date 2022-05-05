@@ -67,5 +67,46 @@
 
     <string name="About_app">This is a personal project in which it is intended to make an application where people make lists of the products they want to buy in different specific areas that one wants.</string>
 
+    <!-- Strings to use in code -->
+
+    <string name="Add_list_tittle">Add List</string>
+    <string name="Add_item_tittle">Add Item</string>
+
+    <string name="Edit_list_tittle">Edit List</string>
+    <string name="Edit_item_tittle">Edit Item</string>
+
+    <!-- Strings to send to a message -->
+
+    <string name="Message1">Fatal Error, to update Total List, Please contact with developer</string>
+    <string name="Message2">Fatal Error, fragment no exist, Please contact with developer</string>
+    <string name="Message3">Failed to save data, Please contact with developer</string>
+    <string name="Message4">Fatal error Id = -1, Please contact with developer</string>
+    <string name="Message5">Fatal error, no edit action no add action, Please contact with developer</string>
+    <string name="Message6">Fatal error, IdTable = -1, Please contact with developer</string>
+    <string name="Message7">Failed to update data, Please contact with developer</string>
+    <string name="Message8">Fatal Error, Table Doesn\'t update, Please contact with developer</string>
+    <string name="Message9">Error update data, Please contact with developer</string>
+    <string name="Message10">Error to delete. Please contact with developer</string>
+
+    <!-- Strings to message to User Errors-->
+
+    <string name="UserMessage1">A field is empty.</string>
+    <string name="UserMessage2">The list was added.</string>
+    <string name="UserMessage3">Data was updated.</string>
+    <string name="UserMessage4">Item was added.</string>
+    <string name="UserMessage5">Item was updated.</string>
+    <string name="UserMessage6">Invalid values.</string>
+
+    <string name="UserMessage7">Delete this List?</string>
+    <string name="UserMessage8">List was delete.</string>
+
+    <string name="UserMessage9">Delete this Item?</string>
+    <string name="UserMessage10">Item was delete.</string>
+
+    <!-- Others Strings-->
+
+    <string name="Yes"> yes </string>
+    <string name="default_value">1</string>
+
 
 </resources>

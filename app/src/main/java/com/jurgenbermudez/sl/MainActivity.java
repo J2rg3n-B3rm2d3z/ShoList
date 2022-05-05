@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity
 
             default:
                 Toast.makeText(this,
-                        "Fatal error fragment no exist, Please contact with developer",
+                        getString(R.string.Message2),
                         Toast.LENGTH_SHORT).show();
                 break;
         }

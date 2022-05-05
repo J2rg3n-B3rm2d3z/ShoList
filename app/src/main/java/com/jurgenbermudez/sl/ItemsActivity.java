@@ -48,11 +48,18 @@ public class ItemsActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("title"));
         setSupportActionBar(ToolbarMain);
 
+        ToolbarMain.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         //Add Item
 
-        if(getIntent().getStringExtra("title").equals("Add Item")) {
+        if(getIntent().getStringExtra("title").equals(getString(R.string.Add_item_tittle))) {
 
-            btnAction.setText("Add");
+            btnAction.setText(getString(R.string.btn_add));
 
             btnAction.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -65,15 +72,13 @@ public class ItemsActivity extends AppCompatActivity {
                             txtCount.getText().toString().isEmpty() ||
                             txtPrice.getText().toString().isEmpty()){
 
-                        Toast.makeText(ItemsActivity.this,"A field is empty.",
+                        Toast.makeText(ItemsActivity.this,getString(R.string.UserMessage1),
                                 Toast.LENGTH_LONG).show();
-
                     }
                     else if(TableId == -1){
 
-                        Toast.makeText(ItemsActivity.this,
-                                "Fatal error IdTable = -1, Please contact with developer",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ItemsActivity.this, getString(R.string.Message6),
+                                Toast.LENGTH_LONG).show();
                         finish();
                     }
                     else{
@@ -118,26 +123,26 @@ public class ItemsActivity extends AppCompatActivity {
                                         table.getTotal(), simpleDateFormat.format(date))) {
 
                                     Toast.makeText(ItemsActivity.this,
-                                            "Item was added", Toast.LENGTH_SHORT).show();
+                                            getString(R.string.UserMessage4), Toast.LENGTH_LONG).show();
 
                                 } else {
 
                                     Toast.makeText(ItemsActivity.this,
-                                            "Fatal Error Table Doesn't update, Please contact with developer",
-                                            Toast.LENGTH_SHORT).show();
+                                            getString(R.string.Message8),
+                                            Toast.LENGTH_LONG).show();
 
                                 }
                             } else {
 
                                 Toast.makeText(ItemsActivity.this,
-                                        "Fatal Error id = -1, Please contact with developer",
-                                        Toast.LENGTH_SHORT).show();
+                                        getString(R.string.Message4),
+                                        Toast.LENGTH_LONG).show();
                             }
                             finish();
                         }
                         else{
 
-                            Toast.makeText(ItemsActivity.this,"Invalid values.",
+                            Toast.makeText(ItemsActivity.this,getString(R.string.UserMessage6),
                                     Toast.LENGTH_LONG).show();
 
                         }
@@ -148,22 +153,22 @@ public class ItemsActivity extends AppCompatActivity {
 
         //Edit item
 
-        else if(getIntent().getStringExtra("title").equals("Edit Item")){
+        else if(getIntent().getStringExtra("title").equals(getString(R.string.Edit_item_tittle))){
 
             //Validation
 
             if(Id == -1) {
 
                 Toast.makeText(ItemsActivity.this,
-                        "Fatal error Id = -1, Please contact with developer",
-                        Toast.LENGTH_SHORT).show();
+                        getString(R.string.Message4),
+                        Toast.LENGTH_LONG).show();
                 finish();
             }
             else if(TableId == -1)
             {
                 Toast.makeText(ItemsActivity.this,
-                        "Fatal error Id = -1, Please contact with developer",
-                        Toast.LENGTH_SHORT).show();
+                        getString(R.string.Message4),
+                        Toast.LENGTH_LONG).show();
                 finish();
 
             }
@@ -178,7 +183,7 @@ public class ItemsActivity extends AppCompatActivity {
                 txtCount.setText(String.valueOf(items.getQuantity_Item()));
                 txtPrice.setText(String.valueOf(items.getPrice()));
 
-                btnAction.setText("Edit");
+                btnAction.setText(getString(R.string.btn_edit));
 
                 btnAction.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -191,7 +196,7 @@ public class ItemsActivity extends AppCompatActivity {
                                 txtCount.getText().toString().isEmpty() ||
                                 txtPrice.getText().toString().isEmpty()){
 
-                            Toast.makeText(ItemsActivity.this,"A field is empty.",
+                            Toast.makeText(ItemsActivity.this,getString(R.string.UserMessage1),
                                     Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -230,33 +235,37 @@ public class ItemsActivity extends AppCompatActivity {
                                             table.getTotal(), simpleDateFormat.format(date))) {
 
                                         Toast.makeText(ItemsActivity.this,
-                                                "Item was updated", Toast.LENGTH_SHORT).show();
+                                                getString(R.string.UserMessage5), Toast.LENGTH_LONG).show();
 
                                     } else {
 
                                         Toast.makeText(ItemsActivity.this,
-                                                "Fatal Error Table Doesn't update, Please contact with developer",
-                                                Toast.LENGTH_SHORT).show();
+                                                getString(R.string.Message8),
+                                                Toast.LENGTH_LONG).show();
                                     }
 
                                 } else {
 
                                     Toast.makeText(ItemsActivity.this,
-                                            "Error update data, Please contact with developer",
-                                            Toast.LENGTH_SHORT).show();
+                                            getString(R.string.Message9),
+                                            Toast.LENGTH_LONG).show();
 
                                 }
                                 finish();
                             }
                             else{
 
-                                Toast.makeText(ItemsActivity.this,"Invalid values.",
+                                Toast.makeText(ItemsActivity.this,getString(R.string.UserMessage6),
                                         Toast.LENGTH_LONG).show();
                             }
                         }
                     }
                 });
             }
+        }
+        else{
+            Toast.makeText(this, getString(R.string.Message4),Toast.LENGTH_LONG).show();
+            finish();
         }
     }
 
